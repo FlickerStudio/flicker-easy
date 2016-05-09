@@ -9,16 +9,16 @@ let app = flicker();
 let homeRouter = require('./routers/home.js');
 let usersRouter = require('./routers/users.js');
 
-app.set('template','pug');
-app.set('static dir','./public');
-app.set('views dir','./views');
-//app.set('env','production');
-app.use(compress());
-//app.use(favicon('./public/favicon.ico'));
-app.use(app.serveStatic('./public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.set('template','pug')
+    .set('static dir','./public')
+    .set('views dir','./views')
+//  .set('env','production');
+    .use(compress())
+//  .use(favicon('./public/favicon.ico'));
+    .use(app.serveStatic('./public'))
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({ extended: true }))
+    .use(cookieParser());
 
 
 // inherited in renders
@@ -30,26 +30,25 @@ app.use(
         res.locals.author = "Flicker.js";
         next();
     }
-);
+)
+    .use('/',homeRouter)
+    .use('/users',usersRouter)
 
-app.use('/',homeRouter);
-app.use('/users',usersRouter);
-
-app.use(
-    (req,res,next) => {
-        var err = new Error('Not Found');
-        err.status = 404;
-        next(err);
-    }
-);
-
-app.use(
-    (req,res,next,err) => {
-        if(app.get('env') == 'production'){
-            err.stack = "";
+    .use(
+        (req,res,next) => {
+            var err = new Error('Not Found');
+            err.status = 404;
+            next(err);
         }
-        res.status(err.status || 500).render("err",{ title: 'Error', error: err});
-    }
-);
+    )
 
-app.listen(3000);
+    .use(
+        (req,res,next,err) => {
+            if(app.get('env') == 'production'){
+                err.stack = "";
+            }
+            res.status(err.status || 500).render("err",{ title: 'Error', error: err});
+        }
+    )
+
+    .listen(3000);
