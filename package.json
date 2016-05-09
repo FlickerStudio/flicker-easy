@@ -1,0 +1,46 @@
+{
+  "name": "flicker-easy",
+  "version": "0.0.8",
+  "description": "Flicker.js app generator",
+  "main": "./bin/flicker.js",
+  "bin": {
+    "flicker-easy": "flicker.js"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "bin": {
+    "flickerjs": "./bin/flicker.js",
+    "flicker": "./bin/flicker.js"
+  },
+  "dependencies": {
+    "commander": "latest",
+    "mkdirp": "latest"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flickerstudio/flicker-easy.git"
+  },
+  "keywords": [
+    "api",
+    "rest",
+    "http",
+    "flicker",
+    "flickerjs",
+    "cli",
+    "web",
+    "framework",
+    "connect"
+  ],
+  "preferGlobal": true,
+  "author": "Christopher Ventura",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flickerstudio/flicker-easy/issues"
+  },
+  "homepage": "https://github.com/flickerstudio/flicker-easy#readme"
+}
