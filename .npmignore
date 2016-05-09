@@ -2,3 +2,4 @@
 .npmignore
 node_modules
 *.log
+package2.json
