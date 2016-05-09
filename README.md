@@ -4,7 +4,7 @@ Flickerjs Apps generator
 
 Usage
 ====
-flickerjs <appname> [dir] (also 'flicker' command)
+flickerjs <app name> [dir] - (also 'flicker' command)
 
 ```
 $ flickerjs myapp
