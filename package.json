@@ -1,6 +1,6 @@
 {
   "name": "flicker-easy",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Flicker.js app generator",
   "main": "./bin/flicker.js",
   "bin": {
