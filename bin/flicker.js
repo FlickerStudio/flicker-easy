@@ -40,7 +40,7 @@ var app_pkg = {
     start: "node app.js"
   },
   dependencies: {
-    flickerjs: "^1.0.1",
+    flickerjs: "^1.0.2",
     "body-parser": "^1.15.0",
     colors: "^1.1.2",
     compression: "^1.6.1",
