@@ -13,28 +13,28 @@ app.set('template','pug')
     .set('static dir','./public')
     .set('views dir','./views')
 //  .set('env','production');
-    .use(compress())
-//  .use(favicon('./public/favicon.ico'));
-    .use(app.serveStatic('./public'))
-    .use(bodyParser.json())
-    .use(bodyParser.urlencoded({ extended: true }))
-    .use(cookieParser());
+    .to(compress())
+//  .to(favicon('./public/favicon.ico'));
+    .to(app.serveStatic('./public'))
+    .to(bodyParser.json())
+    .to(bodyParser.urlencoded({ extended: true }))
+    .to(cookieParser());
 
 
 // inherited in renders
 app.locals.year = 2016;
 
-app.use(
+app.to(
     (req,res,next) => { // custom middleware
         // inherited in renders
         res.locals.author = "Flicker.js";
         next();
     }
 )
-    .use('/',homeRouter)
-    .use('/users',usersRouter)
+    .to({ url: '/', method: 'GET'},homeRouter)
+    .to({ url: '/users', method: 'POST'},usersRouter)
 
-    .use(
+    .to(
         (req,res,next) => {
             var err = new Error('Not Found');
             err.status = 404;
@@ -42,7 +42,7 @@ app.use(
         }
     )
 
-    .use(
+    .to(
         (req,res,next,err) => {
             if(app.get('env') == 'production'){
                 err.stack = "";

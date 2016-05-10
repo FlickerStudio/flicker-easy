@@ -1,6 +1,6 @@
 {
   "name": "flicker-easy",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Flicker.js app generator",
   "main": "./bin/flicker.js",
   "bin": {
@@ -12,6 +12,9 @@
   "bin": {
     "flickerjs": "./bin/flicker.js",
     "flicker": "./bin/flicker.js"
+  },
+  "engines": {
+    "node": ">=6.0.0"
   },
   "dependencies": {
     "commander": "latest",
