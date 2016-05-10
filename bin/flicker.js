@@ -46,7 +46,8 @@ var app_pkg = {
     compression: "^1.6.1",
     consolidate: "^0.14.1",
     "cookie-parser": "^1.4.1",
-    pug: "latest"
+    pug: "latest",
+    'serve-favicon': 'latest'
   }
 };
 
