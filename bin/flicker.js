@@ -40,13 +40,14 @@ var app_pkg = {
     start: "node app.js"
   },
   dependencies: {
-    flickerjs: "^1.0.2",
+    flickerjs: "^1.1.0",
     "body-parser": "^1.15.0",
     colors: "^1.1.2",
     compression: "^1.6.1",
     consolidate: "^0.14.1",
     "cookie-parser": "^1.4.1",
     pug: "latest",
+    morgan: "^1.7.0",
     'serve-favicon': 'latest'
   }
 };

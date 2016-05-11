@@ -14,6 +14,7 @@ app.set('template','pug')
     .set('views dir','./views')
 //  .set('env','production');
     .to(compress())
+    .to(logger('dev'))
 //  .to(favicon('./public/favicon.ico'));
     .to(app.serveStatic('./public'))
     .to(bodyParser.json())
@@ -51,4 +52,6 @@ app.to(
         }
     )
 
-    .listen(3000);
+    .listen(3000, () => {
+        console.log('Running...');
+    });
