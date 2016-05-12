@@ -3,6 +3,7 @@ const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const compress = require('compression');
+const logger = require('morgan');
 
 
 let app = flicker();
