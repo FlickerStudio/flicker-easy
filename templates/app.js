@@ -13,45 +13,50 @@ app.set('template','pug')
     .set('static dir','./public')
     .set('views dir','./views')
 //  .set('env','production');
-    .to(compress())
-    .to(logger('dev'))
-//  .to(favicon('./public/favicon.ico'));
-    .to(app.serveStatic('./public'))
-    .to(bodyParser.json())
-    .to(bodyParser.urlencoded({ extended: true }))
-    .to(cookieParser());
+    .add(compress())
+    .add(logger('dev'))
+//  .add(favicon('./public/favicon.ico'));
+    .add(app.serveStatic('./public'))
+    .add(bodyParser.json())
+    .add(bodyParser.urlencoded({ extended: true }))
+    .add(cookieParser());
 
 
 // inherited in renders
 app.locals.year = 2016;
 
-app.to(
-    (req,res,next) => { // custom middleware
-        // inherited in renders
-        res.locals.author = "Flicker.js";
-        next();
-    }
-)
-    .to({ url: '/', method: 'GET'},homeRouter)
-    .to({ url: '/users', method: 'POST'},usersRouter)
-
-    .to(
-        (req,res,next) => {
-            var err = new Error('Not Found');
-            err.status = 404;
-            next(err);
-        }
-    )
-
-    .to(
-        (req,res,next,err) => {
-            if(app.get('env') == 'production'){
-                err.stack = "";
+app
+    .add(
+        (req,res,next) => { // custom middleware
+            // inherited in renders
+            res.locals.author = "Flicker.js";
+            next();
+    })
+    .add({
+        url: '/',
+        method: 'GET',
+        handler: homeRouter
+    })
+    .add({
+        url: '/users',
+        method: 'GET',
+        handler: usersRouter
+    })
+    .add({
+        handler: [ // array of handlers
+            (req,res,next) => {
+                var err = new Error('Not Found');
+                err.status = 404;
+                next(err);
+            },
+            (req,res,next,err) => {
+                if(app.get('env') == 'production'){
+                    err.stack = "";
+                }
+                res.status(err.status || 500).render("err",{ title: err.message, error: err});
             }
-            res.status(err.status || 500).render("err",{ title: err.message, error: err});
-        }
-    )
-
+        ]
+    })
     .listen(3000, () => {
         console.log('Running...');
     });
